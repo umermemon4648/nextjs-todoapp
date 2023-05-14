@@ -1,95 +1,105 @@
+"use client"
 import Image from 'next/image'
-import styles from './page.module.css'
+// import styles from './page.module.css'
+import style from '../app/style/taskify.module.css'
+import InputField from './Components/InputField'
+import React ,{ useState } from 'react'
 
-export default function Home() {
+
+// let name : string = "Umer"
+// let age : number|string = "22"
+// let isStudent : boolean= false
+// let skills : string[] = ['HTML', 'CSS', "JS"] 
+
+// // Creating an object
+// interface Person1 {
+//   firstName: string;
+//   lastName: string;
+//   age: number;
+//   address: string;
+// }
+
+// const person : Person1 = {
+//   firstName: "John",
+//   lastName: "Doe",
+//   age: 30,
+//   address: "123 Main St, Anytown USA"
+// }
+
+// function sayHello (name:string):void{
+//   console.log(`Hello, ${name}!`)
+// }
+// sayHello("Umer Memon")
+
+
+// let a:unknown = ['HTML', 'CSS', "JS"] 
+
+// // extending type
+// type webTech = {
+//   layout: string,
+//   styling: string[],
+//   scriptingLanguage: string
+// }
+// type softwareTech = webTech &{
+//   appDevelopment: string[],
+// }
+// let app: softwareTech = {
+//   layout: "HTML",
+//   styling: ["CSS", "Tailwind CSS", "Material UI"],
+//   scriptingLanguage: "JS",
+//   appDevelopment : ["React Native", "Flutter"]
+// }
+
+
+
+// // extending interface
+// interface Person{
+//   name: string,
+//   age: number
+// }
+// interface Gender extends Person{
+//   gender: string,
+//   pronoun: string
+// }
+
+// const indentity: Gender = {
+//   name: "Muhammad Umer",
+//   age: 21,
+//   gender: "Male",
+//   pronoun: "He"
+// }
+
+interface Todo{
+  id: number,
+  todo: string,
+  isDone: boolean
+}
+
+const Home: React.FC = () => {
+  const [todo, setTodo] = useState <string> ("")
+
+  const [newTodo, setNewTodo] = useState <Todo[]> ([])
+
+  const addTodoHandler = (e: React.FormEvent)=>{
+    e.preventDefault()
+    if(todo){
+      setNewTodo([...newTodo, {id:Date.now(), todo, isDone:false}])
+      setTodo("")
+    }
+  }
+  console.log(newTodo)
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <>
+   
+<div className={style.App}>
+  <span className={style.heading}>Taskify</span>
+  <InputField todo ={todo} setTodo={setTodo} addTodoHandler={addTodoHandler} />
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+</div>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </>
   )
 }
+
+export default Home

@@ -85,6 +85,7 @@ const Home: React.FC = () => {
     if(todo){
       setNewTodo([...newTodo, {id:Date.now(), todo, isDone:false}])
       setTodo("")
+     
     }
   }
   console.log(newTodo)
@@ -94,6 +95,12 @@ const Home: React.FC = () => {
 <div className={style.App}>
   <span className={style.heading}>Taskify</span>
   <InputField todo ={todo} setTodo={setTodo} addTodoHandler={addTodoHandler} />
+
+  {/* todoList */}
+  {newTodo.map((t)=>(
+    <li>{t.todo}</li>
+  ))}
+
 
 </div>
 

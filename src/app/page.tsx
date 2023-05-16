@@ -4,8 +4,8 @@ import Image from 'next/image'
 import style from '../app/style/taskify.module.css'
 import InputField from './Components/InputField'
 import React ,{ useState } from 'react'
-
-
+import TodoList from './Components/TodoList'
+import { Todo } from './models'
 // let name : string = "Umer"
 // let age : number|string = "22"
 // let isStudent : boolean= false
@@ -69,11 +69,7 @@ import React ,{ useState } from 'react'
 //   pronoun: "He"
 // }
 
-interface Todo{
-  id: number,
-  todo: string,
-  isDone: boolean
-}
+
 
 const Home: React.FC = () => {
   const [todo, setTodo] = useState <string> ("")
@@ -97,10 +93,8 @@ const Home: React.FC = () => {
   <InputField todo ={todo} setTodo={setTodo} addTodoHandler={addTodoHandler} />
 
   {/* todoList */}
-  {newTodo.map((t)=>(
-    <li>{t.todo}</li>
-  ))}
-
+ 
+<TodoList newTodo ={newTodo}  setNewTodo = {setNewTodo}/>
 
 </div>
 

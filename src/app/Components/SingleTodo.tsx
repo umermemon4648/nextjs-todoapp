@@ -11,16 +11,31 @@ interface Props{
   }
 
 const SingleTodo: React.FC <Props> = ({singletodo, newTodo, setNewTodo}: Props) => {
+
+    const doneHandler = (id:number)=>{
+        setNewTodo(newTodo.map((item)=> item.id===id?{...item, isDone: !item.isDone}:item
+        ))}
+
   return (
     <>
     <form className={styles.todosSingle}>
-        <span className={styles.todosSingleText}>
+
+        {singletodo.isDone ? (
+            <s className={styles.todosSingleText}>
+            {singletodo.todo}
+        </s>
+        ):
+        
+        (
+            <span className={styles.todosSingleText}>
             {singletodo.todo}
         </span>
+        )}
+    
 
         <div>
             <span className={styles.icon}>
-      <AiFillEdit/>
+      <AiFillEdit />
             </span>
 
             <span className={styles.icon}>
@@ -28,7 +43,7 @@ const SingleTodo: React.FC <Props> = ({singletodo, newTodo, setNewTodo}: Props) 
             </span>
 
             <span className={styles.icon}>
-            <MdDone/>
+            <MdDone onClick={()=> doneHandler(singletodo.id)}/>
             </span>
 
         </div>

@@ -14,7 +14,14 @@ const SingleTodo: React.FC <Props> = ({singletodo, newTodo, setNewTodo}: Props) 
 
     const doneHandler = (id:number)=>{
         setNewTodo(newTodo.map((item)=> item.id===id?{...item, isDone: !item.isDone}:item
-        ))}
+        ))
+    }
+        
+        const deleteHandler = (id:number)=>{
+            setNewTodo(newTodo.filter((item)=> item.id!==id
+            ))
+        }
+
 
   return (
     <>
@@ -39,7 +46,7 @@ const SingleTodo: React.FC <Props> = ({singletodo, newTodo, setNewTodo}: Props) 
             </span>
 
             <span className={styles.icon}>
-            <AiFillDelete/>
+            <AiFillDelete onClick={()=> deleteHandler(singletodo.id)} />
             </span>
 
             <span className={styles.icon}>
